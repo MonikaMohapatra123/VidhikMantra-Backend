@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+// models/CaseStudy.js
+import mongoose from "mongoose";
 
 const caseStudySchema = new mongoose.Schema(
   {
@@ -13,4 +14,4 @@ const caseStudySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("CaseStudy", caseStudySchema);
+export default mongoose.model("CaseStudy", caseStudySchema);

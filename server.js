@@ -1,14 +1,20 @@
-const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
-const connectDB = require("./config/db");
+// server.js
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
+import blogRoutes from "./routes/blogRoutes.js";
+import caseStudyRoutes from "./routes/caseStudyRoutes.js";
 
 dotenv.config();
-connectDB();
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
+
+// connect to DB (top-level await is supported in ESM)
+await connectDB();
 
 // DEFAULT ROOT ROUTE (Important for Vercel)
 app.get("/", (req, res) => {
@@ -16,8 +22,8 @@ app.get("/", (req, res) => {
 });
 
 // API ROUTES
-app.use("/api/blogs", require("./routes/blogRoutes"));
-app.use("/api/case-studies", require("./routes/caseStudyRoutes"));
+app.use("/api/blogs", blogRoutes);
+app.use("/api/case-studies", caseStudyRoutes);
 
 // SERVER
 const PORT = process.env.PORT || 5000;

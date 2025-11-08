@@ -1,13 +1,22 @@
-const mongoose = require("mongoose");
+// config/db.js
+import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("MongoDB Connected");
+    const uri = process.env.MONGO_URI;
+    if (!uri) {
+      throw new Error("MONGO_URI is not defined in environment variables");
+    }
+    await mongoose.connect(uri, {
+      // options are optional with mongoose v6+
+      // useNewUrlParser: true,
+      // useUnifiedTopology: true,
+    });
+    console.log("MongoDB connected");
   } catch (err) {
-    console.error("DB Error:", err);
+    console.error("MongoDB connection error:", err.message);
     process.exit(1);
   }
 };
 
-module.exports = connectDB;
+export default connectDB;

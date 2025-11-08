@@ -1,5 +1,7 @@
-const express = require("express");
-const CaseStudy = require("../models/CaseStudy");
+// routes/caseStudyRoutes.js
+import express from "express";
+import CaseStudy from "../models/CaseStudy.js";
+
 const router = express.Router();
 
 // CREATE
@@ -56,4 +58,4 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

@@ -1,5 +1,7 @@
-const express = require("express");
-const Blog = require("../models/Blog");
+// routes/blogRoutes.js
+import express from "express";
+import Blog from "../models/Blog.js";
+
 const router = express.Router();
 
 // CREATE
@@ -54,4 +56,4 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
