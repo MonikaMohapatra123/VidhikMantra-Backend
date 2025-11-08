@@ -1,12 +1,7 @@
 {
   "name": "vidhikmantra-backend",
   "version": "1.0.0",
-  "description": "Backend API for Safesite project using Express and MongoDB",
   "main": "server.js",
-  "type": "module",
-  "engines": {
-    "node": "22.x"
-  },
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
@@ -16,8 +11,5 @@
     "dotenv": "^16.6.1",
     "express": "^4.21.2",
     "mongoose": "^8.19.2"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.0"
   }
 }

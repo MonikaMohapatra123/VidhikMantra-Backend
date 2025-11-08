@@ -1,32 +1,22 @@
-// server.js
 import express from "express";
-import cors from "cors";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
-import connectDB from "./config/db.js";
-import blogRoutes from "./routes/blogRoutes.js";
-import caseStudyRoutes from "./routes/caseStudyRoutes.js";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 
-// connect to DB (top-level await is supported in ESM)
-await connectDB();
-
-// DEFAULT ROOT ROUTE (Important for Vercel)
 app.get("/", (req, res) => {
-  res.send("VidhikMantra Backend Running Successfully");
+  res.send("Vidhik Mantra Backend is running...");
 });
 
-// API ROUTES
-app.use("/api/blogs", blogRoutes);
-app.use("/api/case-studies", caseStudyRoutes);
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// SERVER
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log("Server running on port " + PORT);
-});
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
