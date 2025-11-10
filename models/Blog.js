@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 
 const blogSchema = new mongoose.Schema(
   {
+    page: { type: String, required: true },
     title: { type: String, required: true },
     category: { type: String, required: true },
     thumbnail: { type: String },
